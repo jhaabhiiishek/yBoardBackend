@@ -18,7 +18,7 @@ const app = express();
 
 app.use(express.json())
 app.use(cors({
-	origin:"https://yboards.netlify.app/",
+	origin:"https://yboards.netlify.app",
 	credentials:true
 }))
 app.use(cookieParser());
@@ -26,7 +26,7 @@ app.use(cookieParser());
 const server = createServer(app);
 const io = new Server(server, {
 	cors: {
-		origin: "https://yboards.netlify.app/",
+		origin: "https://yboards.netlify.app",
 		methods: ["GET", "POST"],
 		credentials: true
 	}
