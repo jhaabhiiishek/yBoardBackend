@@ -21,9 +21,9 @@ app.post('/login',async(req,res)=>{
 			})
 			res.cookie("user_token",user_token,{
 				maxAge: 7 * 24 * 60 * 60 * 1000,
-				sameSite:"lax",
-				secure:false,
-				// httpOnly:true
+				sameSite:"None",
+				secure:true,
+				httpOnly:true
 			})
 			return res.status(200).json({
 				success:true,
