@@ -11,6 +11,9 @@ import boardRoute from './routes/board.js'
 import listRoute from './routes/list.js'
 import card from './routes/card.js'
 
+// Login dummy
+// Show Suggestions
+
 const app = express();
 
 app.use(express.json())
