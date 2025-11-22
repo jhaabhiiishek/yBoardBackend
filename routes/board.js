@@ -221,7 +221,7 @@ app.post('/getRecommendations',auth,async(req,res)=>{
 		if(!cards){
 			return res.status(404).json({success:false,message:"Card Not Found in this board"})
 		}
-		const allBoardCards = await cards.find({
+		const allBoardCards = await card.find({
 			board_id:board_id
 		});
 		const analysis = analyzeCard(cards, allBoardCards);
