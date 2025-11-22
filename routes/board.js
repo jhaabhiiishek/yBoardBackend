@@ -146,43 +146,7 @@ app.post('/addContributor',auth,async(req,res)=>{
 		if(existingBoard.contributors.includes(contributor_email)){
 			return res.status(409).json({success:false,message:"Contributor already added to this board"})
 		}
-		let transporter = nodemailer.createTransport({
-			service:"gmail",
-			auth:{
-				user:process.env.LMNTOPQ,
-				pass:process.env.WHAT,
-			},
-			tls:{
-				rejectUnauthorized:false,
-			}
-		})
 		
-		let subject= "You have been added as a contributor to a board!";
-		let text_msg= "Hello,\n\nYou have been added as a contributor to the board '"+existingBoard.board_name+"'.\n\nBest Regards,\nY-Board Team";
-		let mailOptions = {
-			from:process.env.LMNTOPQ,
-			to:contributor_email,
-			subject:subject,
-			text: text_msg
-		}
-		await new Promise((resolve, reject) => {
-			transporter.verify(function (error, success) {
-				if (error) {
-					console.log(error);
-					reject(error);
-				} else {
-					console.log("Server ready");
-					resolve(success);
-				}
-			});
-		});
-		transporter.sendMail(mailOptions,function(err, success){
-			if(err){
-				console.log(err)
-			}else{
-				console.log("Email sent successfully!!")
-			}
-		})
 		existingBoard.contributors.push(contributor_email);
 		existingBoard.updated_at = new Date();
 		await existingBoard.save();
